@@ -1,3 +1,25 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
+import { ForgotPasswordComponent } from "./pages/auth/forgot-password/forgot-password.component";
+import { LoginComponent } from "./pages/auth/login/login.component";
+import { RegisterComponent } from "./pages/auth/register/register.component";
+import { ResetPasswordComponent } from "./pages/auth/reset-password/reset-password.component";
+import { VerifyOtpComponent } from "./pages/auth/verify-otp/verify-otp.component";
+import { HomePageComponent } from "./pages/home-page/home-page.component";
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: "", component: HomePageComponent, pathMatch: "full" },
+  { path: "register", component: RegisterComponent, pathMatch: "full" },
+  { path: "login", component: LoginComponent, pathMatch: "full" },
+  {
+    path: "forgot-password",
+    component: ForgotPasswordComponent,
+    pathMatch: "full",
+  },
+  { path: "verify-email", component: VerifyOtpComponent, pathMatch: "full" },
+  {
+    path: "reset-password",
+    component: ResetPasswordComponent,
+    pathMatch: "full",
+  },
+  { path: "**", redirectTo: "", pathMatch: "full" },
+];

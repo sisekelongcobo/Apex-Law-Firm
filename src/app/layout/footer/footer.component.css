@@ -1,0 +1,59 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 32px;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 16px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.mission {
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+.footer-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 4px 0;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+.social-icons {
+  margin-top: 8px;
+}
+
+.social-icons a {
+  margin-right: 8px;
+  color: white;
+}
+
+.social-icons a:hover {
+  color: var(--color-secondary);
+}
+
+mat-icon {
+  vertical-align: middle;
+  margin-right: 4px;
+}

@@ -1,0 +1,18 @@
+<div class="auth-background">
+  <mat-card class="auth-card">
+    <h2>Enter Verification Code</h2>
+    <p>We sent a 6-digit code to your email.</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>OTP</mat-label>
+        <input matInput formControlName="otp" maxlength="6" />
+        <mat-icon matSuffix>verified</mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="form.invalid">
+        Verify
+      </button>
+    </form>
+  </mat-card>
+</div>

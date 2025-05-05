@@ -1,0 +1,83 @@
+.register-background {
+  min-height: 100vh;
+  background: url("/court_house.jpg") center/cover no-repeat;
+  backdrop-filter: blur(5px);
+  padding: 2rem;
+}
+
+.register-card {
+  max-width: 480px;
+  margin: 60px auto;
+  padding: 32px 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  color: var(--color-text-primary);
+}
+
+h2 {
+  margin-bottom: 24px;
+  color: var(--color-primary);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  border-radius: 6px;
+  padding: 2px 0;
+}
+
+.mat-mdc-form-field-infix {
+  padding: 12px 0 !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.mat-mdc-text-field-wrapper:hover {
+  border-color: var(--color-secondary);
+}
+
+.mat-mdc-text-field-wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(27, 42, 65, 0.1);
+}
+
+button[type="submit"] {
+  padding: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 6px;
+}
+
+.footer-link {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.footer-link a {
+  cursor: pointer;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.footer-link a:hover {
+  color: var(--color-primary);
+}

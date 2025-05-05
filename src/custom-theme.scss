@@ -12,4 +12,9 @@ html {
       density: 0,
     )
   );
+  @include mat.form-field-theme(
+    (
+      density: -2,
+    )
+  );
 }

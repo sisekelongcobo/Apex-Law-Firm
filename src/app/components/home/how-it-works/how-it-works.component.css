@@ -1,0 +1,26 @@
+.how-it-works {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 2rem;
+}
+
+.step mat-icon {
+  color: var(--color-secondary);
+}

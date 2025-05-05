@@ -1,0 +1,13 @@
+<section class="featured-lawyers">
+  <h2>Meet Our Top Attorneys</h2>
+  <div class="lawyer-grid">
+    <div class="lawyer-card" *ngFor="let lawyer of lawyers">
+      <img [src]="lawyer.profilePhoto" alt="{{ lawyer.user.fullName }}" />
+      <h3>{{ lawyer.user.fullName + " " + lawyer.user.lastName }}</h3>
+      <p>{{ lawyer.lawyerSpecializations[0].specialization.name }}</p>
+      <button mat-button color="accent" (click)="viewProfile(lawyer)">
+        View Profile
+      </button>
+    </div>
+  </div>
+</section>

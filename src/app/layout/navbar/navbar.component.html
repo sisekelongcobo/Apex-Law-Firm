@@ -1,0 +1,76 @@
+<mat-toolbar color="primary" class="navbar">
+  <!-- Left: Logo -->
+  <span class="logo" routerLink="/">Apex Law Firm</span>
+
+  <span class="spacer"></span>
+  <!-- Hamburger menu for small screens -->
+  <button mat-icon-button class="menu-toggle" [matMenuTriggerFor]="mobileMenu" aria-label="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Full nav links (hidden on small screens) -->
+  <nav class="nav-links">
+    <ng-container *ngIf="isLoggedIn && userRole === 'User'">
+      <a mat-button routerLink="/appointments">Appointments</a>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn && userRole === 'Lawyer'">
+      <a mat-button routerLink="/lawyer/dashboard">Dashboard</a>
+      <a mat-button routerLink="/lawyer/appointments">Appointments</a>
+      <a mat-button routerLink="/lawyer/availability">Availability</a>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn && userRole === 'Admin'">
+      <a mat-button routerLink="/admin/dashboard">Dashboard</a>
+      <a mat-button routerLink="/admin/users">Manage Users</a>
+      <a mat-button routerLink="/admin/reports">Reports</a>
+    </ng-container>
+
+    <ng-container *ngIf="!isLoggedIn">
+      <button mat-button style="color: white" routerLink="/login">Login</button>
+      <button mat-button style="color: white" routerLink="/register">Register</button>
+    </ng-container>
+
+    <div *ngIf="isLoggedIn" class="profile-menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/profile">Profile</button>
+        <button mat-menu-item routerLink="/settings">Settings</button>
+        <button mat-menu-item (click)="logOut()">Logout</button>
+      </mat-menu>
+    </div>
+  </nav>
+</mat-toolbar>
+
+<!-- Responsive dropdown menu (visible only on small screens) -->
+<mat-menu #mobileMenu="matMenu">
+  <ng-container *ngIf="isLoggedIn && userRole === 'User'">
+    <button mat-menu-item routerLink="/appointments">Appointments</button>
+  </ng-container>
+
+  <ng-container *ngIf="isLoggedIn && userRole === 'Lawyer'">
+    <button mat-menu-item routerLink="/lawyer/dashboard">Dashboard</button>
+    <button mat-menu-item routerLink="/lawyer/appointments">Appointments</button>
+    <button mat-menu-item routerLink="/lawyer/availability">Availability</button>
+  </ng-container>
+
+  <ng-container *ngIf="isLoggedIn && userRole === 'Admin'">
+    <button mat-menu-item routerLink="/admin/dashboard">Dashboard</button>
+    <button mat-menu-item routerLink="/admin/users">Manage Users</button>
+    <button mat-menu-item routerLink="/admin/reports">Reports</button>
+  </ng-container>
+
+  <ng-container *ngIf="!isLoggedIn">
+    <button mat-menu-item routerLink="/login">Login</button>
+    <button mat-menu-item routerLink="/register">Register</button>
+  </ng-container>
+
+  <ng-container *ngIf="isLoggedIn">
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="/profile">Profile</button>
+    <button mat-menu-item routerLink="/settings">Settings</button>
+    <button mat-menu-item (click)="logOut()">Logout</button>
+  </ng-container>
+</mat-menu>
