@@ -6,7 +6,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
-import { RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { Subscription } from "rxjs";
 import { LawyerProfile, Specialization } from "../../interface";
 import { HomePageService } from "../home-page/service/home-page.service";
@@ -33,13 +33,34 @@ export class LawyerListComponent implements OnInit, OnDestroy {
   allLawyers: LawyerProfile[] = [];
   selectedSpecializations: string[] = [];
   sortBy = "rating";
+  showAllLawyers = true;
   private subscription: Subscription = new Subscription();
 
-  constructor(private homeService: HomePageService, private lawyerService: LawyerListService) {}
+  constructor(
+    private homeService: HomePageService,
+    private lawyerService: LawyerListService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getSpecializations();
     this.getLawyerProfiles();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      const specializationId = params["specializationId"];
+      if (specializationId) {
+        this.showAllLawyers = false;
+        this.getLawyerProfilesBySpecialization(Number(specializationId));
+      } else {
+        this.showAllLawyers = true;
+        this.getLawyerProfiles();
+      }
+    });
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const specializationId = urlParams.get("specializationId");
+    // if (specializationId) {
+    //   this.showAllLawyers = false;
+    //   this.getLawyerProfilesBySpecialization(Number(specializationId));
+    // }
   }
 
   get filteredLawyers(): LawyerProfile[] {
@@ -69,6 +90,20 @@ export class LawyerListComponent implements OnInit, OnDestroy {
         this.subscription.add(
           this.homeService.getSpecializations$().subscribe((specializations) => {
             this.specializations = specializations;
+          })
+        );
+      },
+      error: (err) => console.error("Fetch failed:", err),
+    });
+  }
+
+  getLawyerProfilesBySpecialization(specializationId: number) {
+    this.lawyerService.getLawyerProfilesBySpecialization(specializationId).subscribe({
+      next: () => {
+        this.subscription.add(
+          this.lawyerService.getLawyerProfiles$().subscribe((lawyers) => {
+            console.log("Lawyers fetched:", lawyers);
+            this.allLawyers = lawyers;
           })
         );
       },

@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Specialization } from "../../../interface";
 import { HomePageService } from "../../../pages/home-page/service/home-page.service";
@@ -18,26 +19,21 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   selectedServiceId: number | null = null;
   private subscription: Subscription = new Subscription();
 
-  constructor(private homeService: HomePageService) {}
+  constructor(private homeService: HomePageService, private router: Router) {}
 
   ngOnInit() {
     this.getservices();
     this.subscription.add(
       this.homeService.getSpecializations$().subscribe((services) => {
         this.services = services;
-        console.log("Services:", this.services);
       })
     );
-  }
-
-  navigateTo(service: string) {
-    // Navigate to filtered lawyer list
   }
 
   onServiceSelect(service: Specialization) {
     this.selectedService = service;
     this.selectedServiceId = service.id;
-    console.log("Selected service:", service);
+    this.router.navigate(["/lawyer-list"], { queryParams: { specializationId: service.id } });
   }
 
   getservices() {

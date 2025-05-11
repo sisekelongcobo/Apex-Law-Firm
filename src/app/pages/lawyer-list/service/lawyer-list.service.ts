@@ -25,7 +25,24 @@ export class LawyerListService {
     );
   }
 
+  getLawyerProfilesBySpecialization(specializationId: number): Observable<any> {
+    this.setLawyerProfiles([]);
+    return this.http
+      .get<{ message: string; data: LawyerProfile[] }>(
+        `${this.LAWYER_URL}?specializationId=${specializationId}`
+      )
+      .pipe(
+        tap((res: any) => {
+          if (res.message !== "Lawyers retrieved successfully.") {
+            throw new Error("Failed to fetch lawyers");
+          }
+          this.setLawyerProfiles(res.data);
+        })
+      );
+  }
+
   getLawyerProfile(id: number): Observable<any> {
+    this.setLawyerProfiles([]);
     return this.http.get<{ message: string; data: LawyerProfile }>(`${this.LAWYER_URL}/${id}`).pipe(
       tap((res: any) => {
         if (res.message !== "Lawyer retrieved successfully.") {

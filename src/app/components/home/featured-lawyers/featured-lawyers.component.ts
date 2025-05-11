@@ -30,7 +30,6 @@ export class FeaturedLawyersComponent implements OnInit {
     this.http.get<{ message: string; data: LawyerProfile[] }>(this.LAWYER_URL).subscribe({
       next: (res) => {
         this.lawyers = res.data;
-        console.log("Lawyers:", this.lawyers);
       },
       error: (error) => {
         console.error("Error fetching lawyers:", error);

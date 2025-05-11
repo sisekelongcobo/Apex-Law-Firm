@@ -1,5 +1,5 @@
 <div class="lawyer-list-container">
-  <aside class="sidebar">
+  <aside class="sidebar" *ngIf="showAllLawyers">
     <h3>Filter by Specialization</h3>
     <mat-selection-list [(ngModel)]="selectedSpecializations">
       <mat-list-option *ngFor="let spec of specializations" [value]="spec.name">
