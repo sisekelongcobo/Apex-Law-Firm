@@ -8,6 +8,8 @@
   gap: 2rem;
   overflow-x: auto;
   padding: 1rem 0;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
 }
 
 .grid::-webkit-scrollbar {
@@ -21,7 +23,22 @@
   padding: 1.5rem;
   transition: box-shadow 0.3s ease;
   cursor: pointer;
-  width: 10%;
+  flex: 0 0 auto;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card:hover {
@@ -33,8 +50,15 @@
   color: var(--color-secondary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 680px) {
   .card {
-    width: 80%;
+    width: 100px;
+    height: 150px;
+  }
+
+  .card h3 {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

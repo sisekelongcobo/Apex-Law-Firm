@@ -11,16 +11,17 @@ export interface LawyerSpecialization {
 
 export interface LawyerProfile {
   id: number;
-  user_id: number;
+  fullName: string;
+  email: string;
   biography: string;
-  year_of_experience: number;
-  education: string;
-  languages: string;
+  averageRating: number;
   profilePhoto: string;
   registrationBody: string;
   registrationNumber: string;
-  user: User;
-  lawyerSpecializations: LawyerSpecialization[];
+  yearOfExperience: number;
+  education?: string;
+  languages?: string[];
+  specializations: string[];
 }
 
 export interface User {

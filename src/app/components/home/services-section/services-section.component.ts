@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Subscription } from "rxjs";
 import { Specialization } from "../../../interface";
-import { HomePageService } from "../../../pages/home-page/home-page.service";
+import { HomePageService } from "../../../pages/home-page/service/home-page.service";
 
 @Component({
   selector: "app-services-section",
+  standalone: true,
   imports: [MatIconModule, CommonModule],
   templateUrl: "./services-section.component.html",
   styleUrl: "./services-section.component.css",
@@ -16,13 +16,13 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   services: Specialization[] = [];
   selectedService: Specialization | null = null;
   selectedServiceId: number | null = null;
-  private sub: Subscription = new Subscription();
+  private subscription: Subscription = new Subscription();
 
-  constructor(private http: HttpClient, private homeService: HomePageService) {}
+  constructor(private homeService: HomePageService) {}
 
   ngOnInit() {
     this.getservices();
-    this.sub.add(
+    this.subscription.add(
       this.homeService.getSpecializations$().subscribe((services) => {
         this.services = services;
         console.log("Services:", this.services);
@@ -48,6 +48,8 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

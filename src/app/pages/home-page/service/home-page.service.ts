@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, tap } from "rxjs";
-import { Specialization } from "../../interface";
+import { Specialization } from "../../../interface";
 
 @Injectable({
   providedIn: "root",
@@ -14,14 +14,11 @@ export class HomePageService {
   constructor(private http: HttpClient) {}
 
   getSpecializations(): Observable<any> {
-    console.log("Fetching specializations...");
     return this.http.get<{ message: string; data: Specialization[] }>(this.SPECIALIZATION_URL).pipe(
       tap((res: any) => {
-        console.log("Response:", res);
         if (res.message !== "Specializations retrieved successfully.") {
           throw new Error("Failed to fetch specializations");
         }
-        console.log("Specializations:", res.data);
         this.setSpecializations(res.data);
       })
     );

@@ -15,6 +15,9 @@
 }
 
 .lawyer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: white;
   border: 1px solid var(--color-secondary);
   border-radius: 8px;
@@ -24,6 +27,17 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+.lawter-specializations {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-profile-btn {
+  margin-top: auto;
+}
+
 .lawyer-card img {
   width: 100%;
   height: auto;
@@ -31,7 +45,7 @@
   object-fit: cover;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 680px) {
   .lawyer-card {
     min-width: 80%;
   }
