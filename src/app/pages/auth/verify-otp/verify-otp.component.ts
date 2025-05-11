@@ -10,23 +10,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-verify-otp",
   standalone: true,
-  imports: [
-    MatCardModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    CommonModule,
-  ],
+  imports: [MatCardModule, MatIconModule, MatInputModule, MatButtonModule, ReactiveFormsModule, CommonModule],
   templateUrl: "./verify-otp.component.html",
   styleUrl: "./verify-otp.component.css",
 })
 export class VerifyOtpComponent {
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.form = this.formBuilder.group({
       otp: ["", [Validators.required, Validators.minLength(6)]],
     });

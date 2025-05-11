@@ -10,23 +10,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-reset-password",
   standalone: true,
-  imports: [
-    MatCardModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    CommonModule,
-  ],
+  imports: [MatCardModule, MatIconModule, MatInputModule, MatButtonModule, ReactiveFormsModule, CommonModule],
   templateUrl: "./reset-password.component.html",
   styleUrl: "./reset-password.component.css",
 })
 export class ResetPasswordComponent {
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
     this.form = this.formBuilder.group({
       password: ["", [Validators.required, Validators.minLength(8)]],
       confirmPassword: ["", [Validators.required]],
